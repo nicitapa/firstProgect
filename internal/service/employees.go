@@ -89,7 +89,7 @@ func (s *Service) DeleteEmployeesByID(id int) (err error) {
 		return err
 	}
 
-	err = s.repository.DeleteEmployeesByID(id)
+	err = s.repository.DeleteEmployeesByID(ctx, id)
 	if err != nil {
 		return err
 	}

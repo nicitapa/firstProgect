@@ -20,7 +20,7 @@ func (r *Repository) GetAllEmployees(ctx context.Context) (employees []models.Em
 func (r *Repository) GetEmployeesByID(ctx context.Context, id int) (employees models.Employees, err error) {
 	if err = r.db.GetContext(ctx, &employees, `
 		SELECT id, name, email, age
-		FROM users
+		FROM employees
 		WHERE id = $1`, id); err != nil {
 		return models.Employees{}, r.translateError(err)
 	}
@@ -30,7 +30,7 @@ func (r *Repository) GetEmployeesByID(ctx context.Context, id int) (employees mo
 
 func (r *Repository) CreateEmployees(ctx context.Context, employees models.Employees) (err error) {
 	_, err = r.db.ExecContext(ctx, `INSERT INTO employees (name, email, age)
-					VALUES ($1, $2, $3,)`,
+					VALUES ($1, $2, $3)`,
 		employees.Name,
 		employees.Email,
 		employees.Age)
@@ -46,7 +46,7 @@ func (r *Repository) UpdateEmployeesByID(ctx context.Context, employees models.E
 		UPDATE employees SET name = $1, 
 		                    email = $2, 
 		                    age = $3,
-		                    		                WHERE id = $5`,
+		                    		                WHERE id = $4`,
 		employees.Name,
 		employees.Email,
 		employees.Age,

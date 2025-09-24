@@ -3,6 +3,7 @@ package models
 type Config struct {
 	AppParams      AppParams      `json:"app_params"`
 	PostgresParams PostgresParams `json:"postgres_params"`
+	RedisParams    RedisParams    `json:"redis_params"`
 }
 
 type AppParams struct {

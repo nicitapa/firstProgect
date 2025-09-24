@@ -130,7 +130,7 @@ func (ctrl *Controller) UpdateEmployeesByID(c *gin.Context) {
 	c.JSON(http.StatusOK, CommonResponse{Message: "Employees updated successfully"})
 }
 
-// DeleteEmployeessByID
+// DeleteEmployeesByID
 // @Summary Удалить пользователя по ID
 // @Description Удаление пользователя по ID
 // @Tags Employees
