@@ -1,9 +1,8 @@
 package configs
 
 import (
-	_ "errors"
+	"encoding/json"
 	"fmt"
-	"github.com/goccy/go-json"
 	"github.com/joho/godotenv"
 	"github.com/nicitapa/firstProgect/internal/models"
 	"os"
@@ -18,12 +17,12 @@ func ReadSettings() error {
 
 	configFile, err := os.Open("internal/configs/configs.json")
 	if err != nil {
-		return fmt.Errorf("error while opening configs file: %w", err)
+		return fmt.Errorf("error while opening config file: %w", err)
 	}
 	defer configFile.Close()
 
 	if err = json.NewDecoder(configFile).Decode(&AppSettings); err != nil {
-		return fmt.Errorf("error while parsing configs file: %w", err)
+		return fmt.Errorf("error while parsing config file: %w", err)
 	}
 
 	return nil
