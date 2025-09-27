@@ -9,7 +9,7 @@ definitions:
       message:
         type: string
     type: object
-  controller.CreateUsersRequest:
+  controller.CreateEmployeesRequest:
     properties:
       age:
         type: integer
@@ -18,7 +18,7 @@ definitions:
       name:
         type: string
     type: object
-  models.User:
+  models.Employees:
     properties:
       age:
         type: integer
@@ -36,7 +36,7 @@ info:
     url: http://test.com
   title: OnlineShop API
 paths:
-  /Users:
+  /Employees:
     get:
       description: Получение списка всех пользователей
       produces:
@@ -46,7 +46,7 @@ paths:
           description: OK
           schema:
             items:
-              $ref: '#/definitions/models.User'
+              $ref: '#/definitions/models.Employees'
             type: array
         "500":
           description: Internal Server Error
@@ -54,21 +54,7 @@ paths:
             $ref: '#/definitions/controller.CommonError'
       summary: Получение пользователей
       tags:
-      - User
-  /ping:
-    get:
-      description: Проверка сервиса
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            $ref: '#/definitions/controller.CommonResponse'
-      summary: Health-check
-      tags:
-      - Ping
-  /users:
+      - Employees
     post:
       description: Добавление нового пользователя
       parameters:
@@ -77,7 +63,7 @@ paths:
         name: request_body
         required: true
         schema:
-          $ref: '#/definitions/controller.CreateUsersRequest'
+          $ref: '#/definitions/controller.CreateEmployeesRequest'
       produces:
       - application/json
       responses:
@@ -99,8 +85,8 @@ paths:
             $ref: '#/definitions/controller.CommonError'
       summary: Добавление нового пользователя
       tags:
-      - Users
-  /users/{id}:
+      - Employees
+  /Employees/{id}:
     delete:
       description: Удаление пользователя по ID
       parameters:
@@ -130,7 +116,7 @@ paths:
             $ref: '#/definitions/controller.CommonError'
       summary: Удалить пользователя по ID
       tags:
-      - User
+      - Employees
     get:
       description: Получение пользователя по ID
       parameters:
@@ -145,7 +131,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/models.User'
+            $ref: '#/definitions/models.Employees'
         "400":
           description: Bad Request
           schema:
@@ -160,7 +146,7 @@ paths:
             $ref: '#/definitions/controller.CommonError'
       summary: Получить пользователя по ID
       tags:
-      - User
+      - Employees
     put:
       description: Обновление пользователя по ID
       parameters:
@@ -174,7 +160,7 @@ paths:
         name: request_body
         required: true
         schema:
-          $ref: '#/definitions/controller.CreateUsersRequest'
+          $ref: '#/definitions/controller.CreateEmployeesRequest'
       produces:
       - application/json
       responses:
@@ -200,5 +186,18 @@ paths:
             $ref: '#/definitions/controller.CommonError'
       summary: Обновить пользователя по ID
       tags:
-      - User
+      - Employees
+  /ping:
+    get:
+      description: Проверка сервиса
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/controller.CommonResponse'
+      summary: Health-check
+      tags:
+      - Ping
 swagger: "2.0"

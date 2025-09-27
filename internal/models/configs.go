@@ -24,3 +24,7 @@ type RedisParams struct {
 	Port     string `json:"port"`
 	Database int    `json:"database"`
 }
+type AuthParams struct {
+	AccessTokenTllMinutes int `json:"access_token_tll_minutes"`
+	RefreshTokenTllDays   int `json:"refresh_token_tll_days"`
+}

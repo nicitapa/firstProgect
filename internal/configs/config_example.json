@@ -11,6 +11,14 @@
     "user": "",
     "password": "",
     "database": ""
+  },
+  "redis_params": {
+    "host": "",
+    "port": "",
+    "database": 0
+  },
+  "auth_params": {
+    "access_token_ttl_minutes": 0,
+    "refresh_token_ttl_days": 0
   }
-
 }

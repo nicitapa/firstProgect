@@ -9,14 +9,14 @@
         }
     },
     "paths": {
-        "/Users": {
+        "/Employees": {
             "get": {
                 "description": "Получение списка всех пользователей",
                 "produces": [
                     "application/json"
                 ],
                 "tags": [
-                    "User"
+                    "Employees"
                 ],
                 "summary": "Получение пользователей",
                 "responses": {
@@ -25,7 +25,7 @@
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/models.User"
+                                "$ref": "#/definitions/models.Employees"
                             }
                         }
                     },
@@ -36,36 +36,14 @@
                         }
                     }
                 }
-            }
-        },
-        "/ping": {
-            "get": {
-                "description": "Проверка сервиса",
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "Ping"
-                ],
-                "summary": "Health-check",
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/controller.CommonResponse"
-                        }
-                    }
-                }
-            }
-        },
-        "/users": {
+            },
             "post": {
                 "description": "Добавление нового пользователя",
                 "produces": [
                     "application/json"
                 ],
                 "tags": [
-                    "Users"
+                    "Employees"
                 ],
                 "summary": "Добавление нового пользователя",
                 "parameters": [
@@ -75,7 +53,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/controller.CreateUsersRequest"
+                            "$ref": "#/definitions/controller.CreateEmployeesRequest"
                         }
                     }
                 ],
@@ -107,14 +85,14 @@
                 }
             }
         },
-        "/users/{id}": {
+        "/Employees/{id}": {
             "get": {
                 "description": "Получение пользователя по ID",
                 "produces": [
                     "application/json"
                 ],
                 "tags": [
-                    "User"
+                    "Employees"
                 ],
                 "summary": "Получить пользователя по ID",
                 "parameters": [
@@ -130,7 +108,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/models.User"
+                            "$ref": "#/definitions/models.Employees"
                         }
                     },
                     "400": {
@@ -159,7 +137,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "User"
+                    "Employees"
                 ],
                 "summary": "Обновить пользователя по ID",
                 "parameters": [
@@ -176,7 +154,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/controller.CreateUsersRequest"
+                            "$ref": "#/definitions/controller.CreateEmployeesRequest"
                         }
                     }
                 ],
@@ -219,7 +197,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "User"
+                    "Employees"
                 ],
                 "summary": "Удалить пользователя по ID",
                 "parameters": [
@@ -258,6 +236,26 @@
                     }
                 }
             }
+        },
+        "/ping": {
+            "get": {
+                "description": "Проверка сервиса",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Ping"
+                ],
+                "summary": "Health-check",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/controller.CommonResponse"
+                        }
+                    }
+                }
+            }
         }
     },
     "definitions": {
@@ -277,7 +275,7 @@
                 }
             }
         },
-        "controller.CreateUsersRequest": {
+        "controller.CreateEmployeesRequest": {
             "type": "object",
             "properties": {
                 "age": {
@@ -291,7 +289,7 @@
                 }
             }
         },
-        "models.User": {
+        "models.Employees": {
             "type": "object",
             "properties": {
                 "age": {

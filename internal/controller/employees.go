@@ -67,7 +67,7 @@ type CreateEmployeesRequest struct {
 // @Tags Employees
 // @Consume json
 // @Produce json
-// @Param request_body body CreateUsersRequest true "информация о новом пользователе"
+// @Param request_body body CreateEmployeesRequest true "информация о новом пользователе"
 // @Success 201 {object} CommonResponse
 // @Failure 400 {object} CommonError
 // @Failure 422 {object} CommonError

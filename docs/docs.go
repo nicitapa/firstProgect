@@ -19,14 +19,14 @@ const docTemplate = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
-        "/Users": {
+        "/Employees": {
             "get": {
                 "description": "Получение списка всех пользователей",
                 "produces": [
                     "application/json"
                 ],
                 "tags": [
-                    "User"
+                    "Employees"
                 ],
                 "summary": "Получение пользователей",
                 "responses": {
@@ -35,7 +35,7 @@ const docTemplate = `{
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/models.User"
+                                "$ref": "#/definitions/models.Employees"
                             }
                         }
                     },
@@ -46,36 +46,14 @@ const docTemplate = `{
                         }
                     }
                 }
-            }
-        },
-        "/ping": {
-            "get": {
-                "description": "Проверка сервиса",
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "Ping"
-                ],
-                "summary": "Health-check",
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/controller.CommonResponse"
-                        }
-                    }
-                }
-            }
-        },
-        "/users": {
+            },
             "post": {
                 "description": "Добавление нового пользователя",
                 "produces": [
                     "application/json"
                 ],
                 "tags": [
-                    "Users"
+                    "Employees"
                 ],
                 "summary": "Добавление нового пользователя",
                 "parameters": [
@@ -85,7 +63,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/controller.CreateUsersRequest"
+                            "$ref": "#/definitions/controller.CreateEmployeesRequest"
                         }
                     }
                 ],
@@ -117,14 +95,14 @@ const docTemplate = `{
                 }
             }
         },
-        "/users/{id}": {
+        "/Employees/{id}": {
             "get": {
                 "description": "Получение пользователя по ID",
                 "produces": [
                     "application/json"
                 ],
                 "tags": [
-                    "User"
+                    "Employees"
                 ],
                 "summary": "Получить пользователя по ID",
                 "parameters": [
@@ -140,7 +118,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/models.User"
+                            "$ref": "#/definitions/models.Employees"
                         }
                     },
                     "400": {
@@ -169,7 +147,7 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "User"
+                    "Employees"
                 ],
                 "summary": "Обновить пользователя по ID",
                 "parameters": [
@@ -186,7 +164,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/controller.CreateUsersRequest"
+                            "$ref": "#/definitions/controller.CreateEmployeesRequest"
                         }
                     }
                 ],
@@ -229,7 +207,7 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "User"
+                    "Employees"
                 ],
                 "summary": "Удалить пользователя по ID",
                 "parameters": [
@@ -268,6 +246,26 @@ const docTemplate = `{
                     }
                 }
             }
+        },
+        "/ping": {
+            "get": {
+                "description": "Проверка сервиса",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Ping"
+                ],
+                "summary": "Health-check",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/controller.CommonResponse"
+                        }
+                    }
+                }
+            }
         }
     },
     "definitions": {
@@ -287,7 +285,7 @@ const docTemplate = `{
                 }
             }
         },
-        "controller.CreateUsersRequest": {
+        "controller.CreateEmployeesRequest": {
             "type": "object",
             "properties": {
                 "age": {
@@ -301,7 +299,7 @@ const docTemplate = `{
                 }
             }
         },
-        "models.User": {
+        "models.Employees": {
             "type": "object",
             "properties": {
                 "age": {
