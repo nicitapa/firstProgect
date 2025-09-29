@@ -5,20 +5,18 @@ import (
 	"errors"
 	"github.com/jmoiron/sqlx"
 	"github.com/nicitapa/firstProgect/internal/errs"
-	"github.com/rs/zerolog"
 )
 
 type Repository struct {
-	db     *sqlx.DB
-	logger zerolog.Logger
+	db *sqlx.DB
 }
 
-func NewRepository(db *sqlx.DB, logger zerolog.Logger) *Repository {
+func NewRepository(db *sqlx.DB) *Repository {
 	return &Repository{
-		db:     db,
-		logger: logger}
-
+		db: db,
+	}
 }
+
 func (r *Repository) translateError(err error) error {
 	switch {
 	case errors.Is(err, sql.ErrNoRows):
