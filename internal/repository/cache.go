@@ -6,19 +6,21 @@ import (
 	"fmt"
 	"github.com/nicitapa/firstProgect/internal/configs"
 	"github.com/redis/go-redis/v9"
+	"github.com/rs/zerolog"
 	"time"
 )
 
 type Cache struct {
-	rdb *redis.Client
+	rdb    *redis.Client
+	logger zerolog.Logger
 }
 
-func NewCache(client *redis.Client) *Cache {
+func NewCache(client *redis.Client, logger zerolog.Logger) *Cache {
 	return &Cache{
-		rdb: client,
+		rdb:    client,
+		logger: logger,
 	}
 }
-
 func (c *Cache) Set(ctx context.Context, key string, value interface{}, duration time.Duration) error {
 	rawU, err := json.Marshal(value)
 	if err != nil {

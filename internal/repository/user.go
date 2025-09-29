@@ -29,8 +29,8 @@ func (r *Repository) GetUserByID(ctx context.Context, id int) (user models.User,
 		SELECT id, full_name, username, password, role, created_at, updated_at 
 		FROM users
 		WHERE id = $1`, id); err != nil {
-		logger.Err(err).Msg("error selecting user")
-		return models.User{}, r.translateError(err)
+		r.logger.Error().Err(err).Str("func", "repository.GetUserByID").Msg("Error selecting users")
+		return models.User{}, err
 	}
 
 	return user, nil
