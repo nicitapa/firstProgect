@@ -6,6 +6,7 @@ import (
 )
 
 func (r *Repository) GetAllEmployees(ctx context.Context) (employees []models.Employees, err error) {
+
 	if err = r.db.SelectContext(ctx, &employees, `
 		SELECT id, name, email, age, 
 		FROM employees

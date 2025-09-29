@@ -5,7 +5,9 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/nicitapa/firstProgect/internal/errs"
 	"github.com/nicitapa/firstProgect/internal/models"
+	"github.com/rs/zerolog"
 	"net/http"
+	"os"
 	"strconv"
 )
 
@@ -18,13 +20,22 @@ import (
 // @Failure 500 {object} CommonError
 // @Router /Employees [get]
 func (ctrl *Controller) GetAllEmployees(c *gin.Context) {
-	employees, err := ctrl.service.GetAllEmployees()
+	logger := zerolog.New(os.Stdout).With().Str("func_name", "controller.GetAllEmployees").Logger()
+	userID := c.GetInt(userIDCtx)
+	if userID == 0 {
+		c.JSON(http.StatusBadRequest, CommonError{Error: "invalid userID in context"})
+		return
+	}
+
+	logger.Debug().Int("user_id", userID).Msg("GetUser")
+
+	products, err := ctrl.service.GetAllEmployees()
 	if err != nil {
 		ctrl.handleError(c, err)
 		return
 	}
 
-	c.JSON(http.StatusOK, employees)
+	c.JSON(http.StatusOK, products)
 }
 
 // GetEmployeesByID
