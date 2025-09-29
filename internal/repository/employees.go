@@ -50,7 +50,7 @@ func (r *Repository) CreateEmployees(ctx context.Context, employees models.Emplo
 }
 
 func (r *Repository) UpdateEmployeesByID(ctx context.Context, employees models.Employees) (err error) {
-	logger := zerolog.New(os.Stdout).With().Timestamp().Str("func_name", "repository.UpdateProductByID").Logger()
+	logger := zerolog.New(os.Stdout).With().Timestamp().Str("func_name", "repository.UpdateEmployeesByID").Logger()
 	_, err = r.db.ExecContext(ctx, `
 		UPDATE employees SET name = $1, 
 		                    email = $2, 
@@ -61,7 +61,7 @@ func (r *Repository) UpdateEmployeesByID(ctx context.Context, employees models.E
 		employees.Age,
 		employees.ID)
 	if err != nil {
-		logger.Err(err).Msg("error updating product")
+		logger.Err(err).Msg("error updating employees")
 		return r.translateError(err)
 	}
 
@@ -69,10 +69,10 @@ func (r *Repository) UpdateEmployeesByID(ctx context.Context, employees models.E
 }
 
 func (r *Repository) DeleteEmployeesByID(ctx context.Context, id int) (err error) {
-	logger := zerolog.New(os.Stdout).With().Timestamp().Str("func_name", "repository.DeleteProductByID").Logger()
+	logger := zerolog.New(os.Stdout).With().Timestamp().Str("func_name", "repository.DeleteEmployeesByID").Logger()
 	_, err = r.db.ExecContext(ctx, `DELETE FROM employees WHERE id = $1`, id)
 	if err != nil {
-		logger.Err(err).Msg("error deleting product")
+		logger.Err(err).Msg("error deleting employees")
 		return r.translateError(err)
 	}
 
